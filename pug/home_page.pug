@@ -1,0 +1,46 @@
+doctype html
+html
+    head
+        include _header
+        title Wichita Wolves
+        style #{style}
+
+include _navbar
+
+#mainCarousel.carousel.slide(data-ride='carousel')
+    ol#carousel-indicators.carousel-indicators
+        - var n = 0
+        each c in CAROUSEL
+            li(class=c.ACTIVE data-target='#mainCarousel' data-slide-to=n++)
+    
+    #main-carousel.carousel-inner
+        each c in CAROUSEL
+            .carousel-item(class=c.ACTIVE style="background: url("+c.BACKGROUND+");") 
+                .carousel-content
+                    h1 #{c.TITLE}
+                    p #{c.DESCRIPTION}
+                    br
+                    button.w3-button(onclick=c.BTN_URL)
+                        | #{c.BTN_TEXT} &nbsp; 
+                        i.fas.fa-arrow-right.fa-sm
+    
+    a.carousel-control-prev(href='#mainCarousel' role='button' data-slide='prev')
+        span.carousel-control-prev-icon(aria-hidden='true')
+        span.sr-only Previous
+    a.carousel-control-next(href='#mainCarousel' role='button' data-slide='next')
+        span.carousel-control-next-icon(aria-hidden='true')
+        span.sr-only Next
+
+.pageContent.w3-col.s12.m12.l12
+    .w3-container.w3-row.content-footer
+        include _footer
+
+script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js")
+script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js")
+script(src="/js/general.js")
+script(src="/js/home.js")
+script.
+    $('.carousel').carousel({
+        interval: 5000,
+        pause: false
+    })

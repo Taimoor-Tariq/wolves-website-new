@@ -1,0 +1,38 @@
+#mNav.overlay
+    a.closebtn(href='javascript:void(0)' onclick='closeNav()') &times;
+    .overlay-content
+        a(href='#') Home
+        a(href='about') About
+        a(href='teams') Esports Teams
+        a(href='content') Content Teams
+        a(href='events') Events
+        a(href='https://sectorsixapparel.com/collections/wichita-wolves' target='_blank' rel='noopener') Shop
+#headerBar.w3-row.headerBar(style='overflow: hidden;')
+    .w3-col.s1.m1.l2.w3-container.side-container &nbsp;
+    nav.topBar.w3-col.s10.m10.l8
+        .topBar-logo-container
+            a(href='#')
+                img.topBar-logo(src='/site-images/logo_wide_alt.png' alt='Wichita Wolves logo' loading='lazy')
+            #logoSocials
+                a(href='http://bit.ly/ww_Twitter' target='_blank' rel='noopener')
+                    i.fab.fa-twitter
+                a(href='http://bit.ly/ww_Facebook' target='_blank' rel='noopener')
+                    i.fab.fa-facebook-square
+                a(href='http://bit.ly/ww_YouTube' target='_blank' rel='noopener')
+                    i.fab.fa-youtube
+                a(href='http://bit.ly/ww_Twitch' target='_blank' rel='noopener')
+                    i.fab.fa-twitch
+                a(href='http://bit.ly/ww_Discord' target='_blank' rel='noopener')
+                    i.fab.fa-discord
+        ul.mainBar
+            li.mainBarLI.hamburger
+                i.fas.fa-bars(onclick='openNav()')
+            li.mainBarLI.half1(onclick='openShop()') Shop
+            li.mainBarLI.half1(onclick="window.location.href='events'") Events
+            li.mainBarLI.subBar.half2
+                p.subBarMain Teams
+                p.subBarLi(onclick="window.location.href='teams'") Esports
+                p.subBarLi(onclick="window.location.href='content'") Content
+            li.mainBarLI.half2(onclick="window.location.href='about'") About
+            li.mainBarLI.half2(onclick="window.location.href='#'") Home
+    .w3-col.s1.m1.l2.w3-container.side-container &nbsp;
