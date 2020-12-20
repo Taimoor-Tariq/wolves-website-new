@@ -1,0 +1,32 @@
+{
+  "name": "wolves-website",
+  "version": "1.0.0",
+  "description": "Official Wichita Wolves Website",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wichita-Wolves/website-new.git"
+  },
+  "author": "Taimoor Tariq",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Wichita-Wolves/website-new/issues"
+  },
+  "homepage": "https://github.com/Wichita-Wolves/website-new#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv-flow": "^3.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "express-subdomain": "^1.0.5",
+    "pug": "^3.0.0",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
+    "sass": "^1.30.0",
+    "socket.io": "^3.0.4",
+    "sqlite3": "^5.0.0"
+  }
+}
