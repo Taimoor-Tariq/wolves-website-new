@@ -1,6 +1,6 @@
 const { ApiClient } = require('twitch');
 const { ClientCredentialsAuthProvider  } = require('twitch-auth');
-const authProvider = new ClientCredentialsAuthProvider("54tzrcqb5q08pusv2y8vy4b0s67gb8", "97vty615ec2z4u96zxgnyz6qbizvn2");
+const authProvider = new ClientCredentialsAuthProvider(process.env.TWITCH_CLIENT_ID, process.env.TWITCH_CLIENT_SECRET);
 const apiClient = new ApiClient({ authProvider });
 
 const sqlite3 = require("sqlite3").verbose();
