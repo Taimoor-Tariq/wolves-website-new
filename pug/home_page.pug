@@ -32,6 +32,22 @@ include _navbar
         span.sr-only Next
 
 .pageContent.w3-col.s12.m12.l12
+    if TEAMS.length != 0
+        .w3-container.w3-row.content-section.dark(style="background: #0b0b11;")
+            .w3-col.s1.m1.l2.w3-container.side-container
+
+            .w3-col.s10.m10.l8.w3-container
+                h1.w3-center(style='font-weight: 700;') Featured Teams
+                p.w3-center Meet the players
+                #teamsDisplay.teamsDisplay
+                    each t in TEAMS
+                        .team-container(style="background: url("+t.BANNER_IMG+");" onclick="window.location.href='/rosters/"+t.NAME+"'")
+
+                button.w3-button.moreStreamsBtn(onclick="window.location.href='/rosters'") All Rosters
+
+            .w3-col.s1.m1.l2.w3-container.side-container
+
+
     .w3-container.w3-row.content-footer
         include _footer
 
