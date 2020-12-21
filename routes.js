@@ -17,8 +17,8 @@ router.get('/rosters/:roster?', async (req, res) => {
         let teamsInfo = await db.wolvesDB.getTeams(req.params.roster);
         if (teamsInfo.length == 0) res.redirect('/rosters')
         else res.send(pug.renderFile(`${__dirname}/pug/roster_page.pug`, {
-            style: sass.renderSync({file: `${__dirname}/sass/rosters.scss`}).css.toString(),
-            TEAM_INFO: await db.wolvesDB.getTeams(req.params.roster),
+            style: sass.renderSync({file: `${__dirname}/sass/roster.scss`}).css.toString(),
+            TEAM_INFO: teamsInfo[0],
             MEMBERS: [],
         }));
     }

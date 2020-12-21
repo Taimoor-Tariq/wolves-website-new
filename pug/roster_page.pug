@@ -1,0 +1,52 @@
+doctype html
+html
+    head
+        include _header
+        title Wichita Wolves | #{TEAM_INFO.NAME.replace(/-/g, " ")}
+        style #{style}
+
+include _navbar
+
+#headerBG.headerBG(style="background: url("+TEAM_INFO.HEADER_IMG+")")
+
+.w3-row
+    .w3-col.s1.m1.l2.w3-container.side-container &nbsp;
+    .w3-col.s10.m10.l8.infoPanel
+        #infoPanel-banner.infoPanel-banner(style="background: url("+TEAM_INFO.BANNER_IMG+")")
+        .infoPanel-container
+            .info-topLeft
+                h1(style='font-weight: 200;') #{TEAM_INFO.NAME.replace(/-/g, " ")}
+            .info-topRight
+                button.w3-button.btn-red(onclick="window.location.href='/rosters'" style='float: right;') ALL TEAMS
+            hr.grey-line
+
+    .w3-col.s1.m1.l2.w3-container.side-container &nbsp;
+
+
+.pageContent.w3-col.s12.m12.l12
+    .w3-container.w3-row.content-section
+        .w3-col.s1.m1.l2.w3-container.side-container
+        .w3-col.s10.m10.l8.w3-container
+            if MEMBERS.length == 0
+                h1.w3-center(style='font-weight: 700;') No Players Yet
+            else
+                h1.w3-center(style='font-weight: 700;') Meet the Roster
+                #playerDisplay.playerDisplay
+                    each m in MEMBERS
+                        .playerContainer(style="background: url("+m.IMG+");")
+                            .playerContainer-pre
+                                h1 #{m.USERNAME}
+                                p.plrName #{m.FIRST_NAME} #{m.LAST_NAME}
+                                p.plrRole #{m.ROLE}
+
+
+        .w3-col.s1.m1.l2.w3-container.side-container
+
+
+
+    .w3-container.w3-row.content-footer
+        include _footer
+
+script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js")
+script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js")
+script(src="/js/general.js")
