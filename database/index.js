@@ -103,6 +103,25 @@ exports.siteDB = {
                 };
             })
         })
+    },
+
+    getPageInfo: (page) => {
+        return new Promise(resolve => {
+            switch (page) {
+                case "rosters":
+                    siteDB.all(`SELECT * FROM "PAGES" WHERE PAGE = "ROSTERS"`, [], (err, res) => { resolve(res[0]) });
+                    break;
+
+                default:
+                    resolve({
+                        DESCRIPTION: null,
+                        BANNER_IMG: null,
+                        HEADER_IMG: null,
+                        BODY: null
+                    })
+                    break;
+            }
+        })
     }
 }
 
@@ -131,5 +150,20 @@ exports.wolvesDB = {
                 else resolve(res);
             })
         })
-    }
+    },
+
+    getTeams: (name=null) => {
+        if (name) return new Promise(resolve => {
+            wolvesDB.all(`SELECT * FROM "TEAMS" WHERE NAME = "${name}"`, [], (err, res) => {
+                if (err) resolve([]);
+                else resolve(res);
+            })
+        })
+        else return new Promise(resolve => {
+            wolvesDB.all(`SELECT * FROM "TEAMS" ORDER BY NAME ASC`, [], (err, res) => {
+                if (err) resolve([]);
+                else resolve(res);
+            })
+        })
+    },
 }
