@@ -8,7 +8,11 @@ router.get('/', async (req, res) => {
         style: sass.renderSync({file: `${__dirname}/sass/home.scss`}).css.toString(),
         CAROUSEL: await db.siteDB.getCarousel(),
         TEAMS: await db.siteDB.getHomePageTeams(),
+        STREAMS: await db.siteDB.getStreamers(),
     }));
 });
+
+db.updateViews();
+setInterval(() => { db.updateViews() }, 10000);
 
 module.exports = router;

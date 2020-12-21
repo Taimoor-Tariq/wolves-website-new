@@ -47,6 +47,38 @@ include _navbar
 
             .w3-col.s1.m1.l2.w3-container.side-container
 
+    if STREAMS.length != 0
+        .w3-container.w3-row.content-section
+            .w3-col.s1.m1.l2.w3-container.side-container
+
+            .w3-col.s10.m10.l8.w3-container
+                h1.w3-center(style='font-weight: 700;') Twitch Streams
+                #streamsDisplay.streamsDisplay
+                    each s in STREAMS
+                        .streams-container(style="background: url("+s.LOGO+");" onclick="openUrl("+s.SOCIALS.TWITCH+")")
+                            if s.VIEWS == 0
+                                p.streamerStatus OFFLINE
+                            else
+                                p.streamerStatus
+                                    | #{s.VIEWS} 
+                                    span(style='color: #FF0207;')
+                                        i.fas.fa-circle
+                            p.streamerName= s.NAME
+                            p.streamerTitle= s.TITLE
+                            .socials-container
+                                a(href=s.SOCIALS.TWITCH target='_blank' rel='noopener')
+                                    i.fab.fa-twitch
+                                if s.SOCIALS.TWITTER
+                                    a(href=s.SOCIALS.TWITTER target='_blank' rel='noopener')
+                                        i.fab.fa-twitter
+                                if s.SOCIALS.YOUTUBE
+                                    a(href=s.SOCIALS.YOUTUBE target='_blank' rel='noopener')
+                                        i.fab.fa-youtube
+
+                button.w3-button.moreStreamsBtn(onclick="window.location.href='/content-creators'") All Streams
+
+            .w3-col.s1.m1.l2.w3-container.side-container
+
 
     .w3-container.w3-row.content-footer
         include _footer
