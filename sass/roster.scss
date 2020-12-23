@@ -1,6 +1,14 @@
 @import './essentials';
 
 /*=======================================================
+	Page Overrides
+=======================================================*/
+
+.infoPanel-container div {
+    width: 50%;
+}
+
+/*=======================================================
 	Player Styles
 =======================================================*/
 
@@ -31,7 +39,7 @@
     padding: 10px 0px 0px 10px;
     overflow: hidden;
     transition: 0.4s;
-    background: url(/siteImages/wolfCard.png);
+    background: url(/site-images/wolf-card.png);
     background-size: cover;
     background-position-y: top;
     background-repeat: no-repeat;

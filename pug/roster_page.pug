@@ -24,7 +24,7 @@ include _navbar
 
 
 .pageContent.w3-col.s12.m12.l12
-    .w3-container.w3-row.content-section
+    .w3-container.w3-row.content-section.dark
         .w3-col.s1.m1.l2.w3-container.side-container
         .w3-col.s10.m10.l8.w3-container
             if MEMBERS.length == 0
@@ -44,7 +44,7 @@ include _navbar
 
 
 
-    .w3-container.w3-row.content-footer
+    .w3-container.w3-row.content-footer(style='margin-top: 80px;')
         include _footer
 
 script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js")
