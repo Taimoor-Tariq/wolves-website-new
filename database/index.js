@@ -105,6 +105,29 @@ exports.siteDB = {
         })
     },
 
+    getPlayers: (team) => {
+        return new Promise(resolve => {
+            wolvesDB.all(`SELECT * FROM "PLAYERS" WHERE TEAM_ID = "${team}"`, [], (err, res) => {
+                if (err) resolve([]);
+                else {
+                    let prom = res.map(async s => {
+                        await this.wolvesDB.getSocials(s.ID).then(socials => {
+                            if (socials.length != 0) {
+                                delete socials[0].ID;
+                                s["SOCIALS"] = socials[0];
+                            }
+                        })
+                    })
+    
+                    Promise.all(prom).then(() => {
+                        res.sort((a, b) => a.ROLE.localeCompare(b.ROLE));
+                        resolve(res);
+                    })
+                };
+            })
+        })
+    },
+
     getPageInfo: (page) => {
         return new Promise(resolve => {
             switch (page) {

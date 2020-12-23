@@ -19,7 +19,7 @@ router.get('/rosters/:roster?', async (req, res) => {
         else res.send(pug.renderFile(`${__dirname}/pug/roster_page.pug`, {
             style: sass.renderSync({file: `${__dirname}/sass/roster.scss`}).css.toString(),
             TEAM_INFO: teamsInfo[0],
-            MEMBERS: [],
+            MEMBERS: await db.siteDB.getPlayers(teamsInfo[0].ID),
         }));
     }
     else res.send(pug.renderFile(`${__dirname}/pug/rosters_page.pug`, {
