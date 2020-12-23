@@ -1,6 +1,8 @@
+# Main:
 node_modules
 package-lock.json
 .env
-temp.*
-*.sql
+
+# Taimoor-Tariq's Workspace:
+EDIT.sql
 css
