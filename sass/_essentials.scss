@@ -60,22 +60,31 @@ body {
     }
 
     .subBar {
-        .subBarMain:hover {
-            color: $red;
-            border-bottom: 2px solid $red;
+        .subBarMain{
+            border-bottom: 2px solid #00000000;
+            transition: 0.4s;
+
+            &:hover {
+                color: $red;
+                border-bottom: 2px solid $red;
+                width: 90px;
+            }
         }
 
         .subBarLi {
+            border-bottom: 2px solid #00000000;
+            display: none;
+            transition: 0.4s;
+
             &:hover {
                 color: $red;
                 border-bottom: 2px solid $red;
             }
-
-            display: none;
         }
 
         &:hover .subBarLi {
             display: block;
+            width: 90px;
         }
     }
 }
