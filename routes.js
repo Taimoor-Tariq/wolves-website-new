@@ -12,6 +12,13 @@ router.get('/', async (req, res) => {
     }));
 });
 
+router.get('/about', async (req, res) => {
+    res.send(pug.renderFile(`${__dirname}/pug/about_page.pug`, {
+        style: sass.renderSync({file: `${__dirname}/sass/about.scss`}).css.toString(),
+        PAGE_INFO: await db.siteDB.getPageInfo("about"),
+    }))
+});
+
 router.get('/rosters/:roster?', async (req, res) => {
     if (req.params.roster) {
         let teamsInfo = await db.wolvesDB.getTeams(req.params.roster);

@@ -135,6 +135,10 @@ exports.siteDB = {
                     siteDB.all(`SELECT * FROM "PAGES" WHERE PAGE = "ROSTERS"`, [], (err, res) => { resolve(res[0]) });
                     break;
 
+                case "about":
+                    siteDB.all(`SELECT * FROM "PAGES" WHERE PAGE = "ABOUT"`, [], (err, res) => { resolve(res[0]) });
+                    break;
+
                 default:
                     resolve({
                         DESCRIPTION: null,

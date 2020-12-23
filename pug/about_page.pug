@@ -1,0 +1,40 @@
+doctype html
+html
+    head
+        include _header
+        title Wichita Wolves | About
+        style #{style}
+
+include _navbar
+
+#headerBG.headerBG(style="background: url("+PAGE_INFO.HEADER_IMG+")")
+
+.w3-row
+    .w3-col.s1.m1.l2.w3-container.side-container &nbsp;
+    .w3-col.s10.m10.l8.infoPanel
+        #infoPanel-banner.infoPanel-banner(style="background: url("+PAGE_INFO.BANNER_IMG+")")
+        .infoPanel-container
+            .info-topLeft
+                h1(style='font-weight: 200;') Who we are
+                p Learn more information about the organization
+            .info-topRight
+                button.w3-button.btn-black(style="float: right;" onclick="window.location.href='MediaKit.zip'") MEDIA KIT
+                button.w3-button.btn-red(style="float: right;" onclick="window.location.href='/rosters'") OUR TEAMS
+                button.w3-button.btn-black(style="float: right;" onclick="window.location.href='/whatis'") What is Esports
+
+            hr.grey-line
+            .info-bottomLeft
+                | !{PAGE_INFO.DESCRIPTION}
+
+    .w3-col.s1.m1.l2.w3-container.side-container &nbsp;
+
+
+.pageContent.w3-col.s12.m12.l12
+    
+
+    .w3-container.w3-row.content-footer
+        include _footer
+
+script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js")
+script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js")
+script(src="/js/general.js")
