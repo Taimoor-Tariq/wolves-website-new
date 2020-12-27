@@ -1,18 +1,16 @@
-const { ApiClient } = require('twitch');
-const { ClientCredentialsAuthProvider  } = require('twitch-auth');
-const authProvider = new ClientCredentialsAuthProvider(process.env.TWITCH_CLIENT_ID, process.env.TWITCH_CLIENT_SECRET);
-const apiClient = new ApiClient({ authProvider });
-
-const axios = require('axios');
-const HTML = require('node-html-parser');
-
-const sqlite3 = require("sqlite3").verbose();
-const siteDB = new sqlite3.Database("./database/site-data.db");
-const adminDB = new sqlite3.Database("./database/admin-data.db");
-const wolvesDB = new sqlite3.Database("./database/wolves-data.db");
-
-const Cryptr = require('cryptr');
-const cryptr = new Cryptr(process.env.ECRYPT_KEY);
+const 
+    Cryptr = require('cryptr'),
+    { ApiClient } = require('twitch'),
+    { ClientCredentialsAuthProvider  } = require('twitch-auth'),
+    authProvider = new ClientCredentialsAuthProvider(process.env.TWITCH_CLIENT_ID, process.env.TWITCH_CLIENT_SECRET),
+    apiClient = new ApiClient({ authProvider }),
+    axios = require('axios'),
+    HTML = require('node-html-parser'),
+    sqlite3 = require("sqlite3").verbose(),
+    siteDB = new sqlite3.Database("./database/site-data.db"),
+    adminDB = new sqlite3.Database("./database/admin-data.db"),
+    wolvesDB = new sqlite3.Database("./database/wolves-data.db"),
+    cryptr = new Cryptr(process.env.ECRYPT_KEY)
 
 let getViews = (id) => {
     return new Promise(resolve => {

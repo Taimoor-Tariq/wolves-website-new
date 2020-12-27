@@ -1,7 +1,7 @@
-const router = require('express').Router();
-const db = require('../database');
-const sass = require('sass');
-const pug = require('pug');
+const router = require('express').Router(),
+    db = require('../database'),
+    sass = require('sass'),
+    pug = require('pug')
 
 router.get('/', async (req, res) => {
     res.send(pug.renderFile(`${__dirname}/../pug/home_page.pug`, {
