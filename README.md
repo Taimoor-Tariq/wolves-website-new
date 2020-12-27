@@ -5,6 +5,6 @@
 ## Setup Instructions
 * Install all dependancies by typing `npm i` in the terminal.
 * Setup the `.env` variables (if you dont have them message @Taimoor-Tariq)
-* This project uses the 'express-subdomain' package so you will have to setup some kind of port-forwarding on your computer since localhost has no subdomains.
+* Test the app locally by typing `npm start` in the terminal. You can look at the website by going to http://localhost:3000/
 
 Download [SQLite Browser](https://sqlitebrowser.org/dl/) to easily edit the .db files. Message @Taimoor-Tariq if you need help.
