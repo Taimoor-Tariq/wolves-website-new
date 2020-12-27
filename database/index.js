@@ -1,17 +1,30 @@
+// TWITCH MODULES
 const 
-    Cryptr = require('cryptr'),
     { ApiClient } = require('twitch'),
     { ClientCredentialsAuthProvider  } = require('twitch-auth'),
     authProvider = new ClientCredentialsAuthProvider(process.env.TWITCH_CLIENT_ID, process.env.TWITCH_CLIENT_SECRET),
-    apiClient = new ApiClient({ authProvider }),
-    axios = require('axios'),
-    HTML = require('node-html-parser'),
+    apiClient = new ApiClient({ authProvider })
+
+// DB MODULES
+const
     sqlite3 = require("sqlite3").verbose(),
     siteDB = new sqlite3.Database("./database/site-data.db"),
     adminDB = new sqlite3.Database("./database/admin-data.db"),
-    wolvesDB = new sqlite3.Database("./database/wolves-data.db"),
+    wolvesDB = new sqlite3.Database("./database/wolves-data.db")
+
+// OTHER MODULES
+const
+    axios = require('axios'),
+    HTML = require('node-html-parser'),
+    Cryptr = require('cryptr'),
     cryptr = new Cryptr(process.env.ECRYPT_KEY)
 
+
+/**
+ * Returns the current munber of viewers for the streamer
+ * @param {string} id The twitch ID of the streamer
+ * @returns Number of viewers
+ */
 let getViews = (id) => {
     return new Promise(resolve => {
         apiClient.helix.streams.getStreamByUserName(id)
@@ -20,7 +33,10 @@ let getViews = (id) => {
     })
 }
 
-
+/**
+ * Decrypts the password provided
+ * @param {string} pass Password you want to decrypt
+ */
 let decryptPassword = (pass) => { return cryptr.decrypt(pass) }
 
 exports.ecnPassword = (id) => {
