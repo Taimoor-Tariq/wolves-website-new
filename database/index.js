@@ -8,13 +8,51 @@ const HTML = require('node-html-parser');
 
 const sqlite3 = require("sqlite3").verbose();
 const siteDB = new sqlite3.Database("./database/site-data.db");
+const adminDB = new sqlite3.Database("./database/admin-data.db");
 const wolvesDB = new sqlite3.Database("./database/wolves-data.db");
+
+const Cryptr = require('cryptr');
+const cryptr = new Cryptr(process.env.ECRYPT_KEY);
 
 let getViews = (id) => {
     return new Promise(resolve => {
         apiClient.helix.streams.getStreamByUserName(id)
             .then(s => { resolve(s?s._data.viewer_count:0) })
             .catch(() => { resolve(0) })
+    })
+}
+
+
+let decryptPassword = (pass) => { return cryptr.decrypt(pass) }
+
+exports.ecnPassword = (id) => {
+    return new Promise(resolve => {
+        adminDB.all(`SELECT * FROM 'USERS' WHERE USERNAME='${id}'`, [], (err, res) => {
+            if (err || res.length == 0) resolve(false);
+            else {
+                if (res.length == 0) resolve(false);
+                else {
+                    let pwd = cryptr.encrypt(res[0].PASSWORD);
+                    adminDB.run(`UPDATE 'USERS' SET PASSWORD='${pwd}' WHERE USERNAME='${id}'`, [], (err) => {
+                        if (err) resolve(false);
+                        else resolve(true);
+                    })
+                }
+            }
+        })
+    })
+}
+
+exports.validateLogin = (user, pass) => {
+    return new Promise(resolve => {
+        adminDB.all(`SELECT * FROM "USERS" WHERE USERNAME="${user}"`, [], (err, res) => {
+            if (err || res.length == 0) resolve(false);
+            else {
+                let pwd = decryptPassword(`${res[0].PASSWORD}`);
+                if (pwd == pass) resolve(true);
+                else resolve(false);
+            }
+        })
     })
 }
 
@@ -77,7 +115,7 @@ exports.siteDB = {
 
     getHomePageTeams: () => {
         return new Promise(resolve => {
-            wolvesDB.all(`SELECT * FROM "TEAMS" WHERE HOME_PAGE = 1`, [], (err, res) => {
+            wolvesDB.all(`SELECT * FROM "TEAMS" WHERE HOME_PAGE=1`, [], (err, res) => {
                 if (err) resolve([]);
                 else resolve(res);
             })
@@ -86,7 +124,7 @@ exports.siteDB = {
 
     getStreamers: () => {
         return new Promise(resolve => {
-            wolvesDB.all(`SELECT * FROM "CONTENT_CREATORS" WHERE platform = "Twitch"`, [], (err, res) => {
+            wolvesDB.all(`SELECT * FROM "CONTENT_CREATORS" WHERE PLATFORM="Twitch"`, [], (err, res) => {
                 if (err) resolve([]);
                 else {
                     let prom = res.map(async s => {
@@ -107,7 +145,7 @@ exports.siteDB = {
 
     getPlayers: (team) => {
         return new Promise(resolve => {
-            wolvesDB.all(`SELECT * FROM "PLAYERS" WHERE TEAM_ID = "${team}"`, [], (err, res) => {
+            wolvesDB.all(`SELECT * FROM "PLAYERS" WHERE TEAM_ID="${team}"`, [], (err, res) => {
                 if (err) resolve([]);
                 else {
                     let prom = res.map(async s => {
@@ -132,11 +170,11 @@ exports.siteDB = {
         return new Promise(resolve => {
             switch (page) {
                 case "rosters":
-                    siteDB.all(`SELECT * FROM "PAGES" WHERE PAGE = "ROSTERS"`, [], (err, res) => { resolve(res[0]) });
+                    siteDB.all(`SELECT * FROM "PAGES" WHERE PAGE="ROSTERS"`, [], (err, res) => { resolve(res[0]) });
                     break;
 
                 case "about":
-                    siteDB.all(`SELECT * FROM "PAGES" WHERE PAGE = "ABOUT"`, [], (err, res) => { resolve(res[0]) });
+                    siteDB.all(`SELECT * FROM "PAGES" WHERE PAGE="ABOUT"`, [], (err, res) => { resolve(res[0]) });
                     break;
 
                 default:
@@ -157,7 +195,7 @@ exports.siteDB = {
 exports.wolvesDB = {
     getGames: (name=null) => {
         if (name) return new Promise(resolve => {
-            wolvesDB.all(`SELECT * FROM "GAMES" WHERE NAME = "${name}"`, [], (err, res) => {
+            wolvesDB.all(`SELECT * FROM "GAMES" WHERE NAME="${name}"`, [], (err, res) => {
                 if (err) resolve([]);
                 else resolve(res);
             })
@@ -172,7 +210,7 @@ exports.wolvesDB = {
 
     getSocials: (id) => {
         return new Promise(resolve => {
-            wolvesDB.all(`SELECT * FROM "SOCIALS" WHERE ID = "${id}"`, [], (err, res) => {
+            wolvesDB.all(`SELECT * FROM "SOCIALS" WHERE ID="${id}"`, [], (err, res) => {
                 if (err) resolve([]);
                 else resolve(res);
             })
@@ -181,7 +219,7 @@ exports.wolvesDB = {
 
     getTeams: (name=null) => {
         if (name) return new Promise(resolve => {
-            wolvesDB.all(`SELECT * FROM "TEAMS" WHERE NAME = "${name}"`, [], (err, res) => {
+            wolvesDB.all(`SELECT * FROM "TEAMS" WHERE NAME="${name}"`, [], (err, res) => {
                 if (err) resolve([]);
                 else resolve(res);
             })

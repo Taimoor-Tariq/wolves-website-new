@@ -3,7 +3,7 @@ const subdomain = require('express-subdomain');
 const express = require('express');
 const app = express();
 
-// app.use(require('express-session')({ secret: process.env.SESSION_KEY }));
+app.use(require('express-session')({ secret: process.env.SESSION_KEY }));
 app.use(express.urlencoded( {extended: true} ));
 app.use(require('body-parser').json());
 app.use(express.static("public"));
