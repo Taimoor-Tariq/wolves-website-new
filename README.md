@@ -1,6 +1,6 @@
 # Wichita Wolves Website
 [![](https://img.shields.io/badge/version-1.0.0-brightgreen?style=flat-square)]()
-[![](https://img.shields.io/badge/contributers-2-blue?style=flat-square)]()
+[![](https://img.shields.io/badge/contributers-1-blue?style=flat-square)]()
 
 ## Setup Instructions
 * Install all dependancies by typing `npm i` in the terminal.
