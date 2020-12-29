@@ -32,5 +32,12 @@
     "sqlite3": "^5.0.0",
     "twitch": "^4.3.6",
     "twitch-auth": "^4.3.6"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "*.json",
+      "*.pug",
+      "*.scss"
+    ]
   }
 }

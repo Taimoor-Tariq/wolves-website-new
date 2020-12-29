@@ -23,7 +23,12 @@ router.get('/dashboard', checkSession, async (req, res) => {
 
 router.route('/login')
     .get(async (req, res) => {
-        res.send("ADMIN LOGIN PAGE")
+        res.send(pug.renderFile(`${__dirname}/../views/admin/login_page.pug`, {
+            style: sass.renderSync({file: `${__dirname}/../sass/admin/login.scss`}).css.toString(),
+            CAROUSEL: await db.siteDB.getCarousel(),
+            TEAMS: await db.siteDB.getHomePageTeams(),
+            STREAMS: await db.siteDB.getStreamers(),
+        }));
     })
     .post(async (req, res) => {
         if (!req.body.username || !req.body.password) return res.redirect('/');

@@ -288,13 +288,15 @@
         }
 
         .socials-container {
-            transform: translate(0, 0);
+            transform: translate(0, -5px);
             width: calc(100% - 30px);
         }
     }
 
     .socials-container a {
         color: $white;
+        font-size: 14pt;
+        margin: 0 10px 0 5px;
 
         &:hover {
             color: $red;
