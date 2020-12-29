@@ -246,3 +246,8 @@ exports.wolvesDB = {
         })
     },
 }
+
+// adminDB
+exports.adminDB = {
+    
+}

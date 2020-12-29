@@ -25,9 +25,7 @@ router.route('/login')
     .get(async (req, res) => {
         res.send(pug.renderFile(`${__dirname}/../views/admin/login_page.pug`, {
             style: sass.renderSync({file: `${__dirname}/../sass/admin/login.scss`}).css.toString(),
-            CAROUSEL: await db.siteDB.getCarousel(),
-            TEAMS: await db.siteDB.getHomePageTeams(),
-            STREAMS: await db.siteDB.getStreamers(),
+            msg: req.query.msg,
         }));
     })
     .post(async (req, res) => {
@@ -38,7 +36,7 @@ router.route('/login')
                     req.session.username = req.body.username;
                     res.redirect('/dashboard');
                 }
-                else res.redirect('/login');
+                else res.redirect('/login?msg=Invalid Credentials');
             })
     });
 
