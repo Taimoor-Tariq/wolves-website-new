@@ -1,12 +1,13 @@
 doctype html
 html
     head
+        include _header
         title Wichita Wolves | Admin
         style !{style}
 
     body.text-center
         form.form-signin(method="POST" action="login")
-            img.mb-4(src='/site-images/logo_alt.png' alt='' width='200')
+            img.mb-4(src='/logos/logo_alt.png' alt='' width='200')
             label.sr-only(for='inputUsername') Username
             input#inputUsername.form-control(name='username' type='text' placeholder='Username' required='' autofocus='')
             label.sr-only(for='inputPassword') Password

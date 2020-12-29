@@ -1,0 +1,58 @@
+nav#sidebar.sidebar-wrapper
+    .sidebar-content
+        .sidebar-brand
+            a(href='#')
+                img(src="/logos/logo_wide_alt.png", alt="LOGO" width="100%")
+
+        .sidebar-header
+            .user-pic
+                img.img-responsive.img-rounded(src='https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg' alt='User picture')
+            .user-info
+                span.user-name #{perms['USERNAME']}
+                span.user-role Administrator
+                span
+                    a(href='/login').log-out Logout
+
+        .sidebar-menu
+            ul
+                if perms['PEOPLE.PLAYERS'] || perms['PEOPLE.CONTENT'] || perms['PEOPLE.STAFF'] || perms['EVENTS']
+                    li.header-menu
+                        span General
+
+                    if perms['PEOPLE.PLAYERS'] || perms['PEOPLE.CONTENT'] || perms['PEOPLE.STAFF']
+                        li.sidebar-dropdown(class=active=="PEOPLE"?"active":"")
+                            a(href='#')
+                                i.fa.fa-users
+                                span &nbsp; People
+                            .sidebar-submenu(style=active=="PEOPLE"?"display: block;":"")
+                                ul
+                                    if perms['PEOPLE.STAFF']
+                                        li
+                                            a(href='/dashboard/people#staff') Staff
+
+                                    if perms['PEOPLE.PLAYERS']
+                                        li
+                                            a(href='/dashboard/people#players') Players
+                                    
+                                    if perms['PEOPLE.CONTENT']
+                                        li
+                                            a(href='/dashboard/people#content') Content
+                        
+                    if perms['EVENTS']
+                        li(class=active=="EVENTS"?"active":"")
+                            a(href='/dashboard/events')
+                                i.fa.fa-calendar-alt
+                                span &nbsp; Events
+
+
+                li.header-menu
+                    span Extra
+
+                li(class=active=="IMAGES"?"active":"")
+                    a(href='/dashboard/images')
+                        i.fa.fa-images
+                        span &nbsp; Images
+
+
+    .sidebar-footer
+        a &copy; 2021 - Wichita Wolves

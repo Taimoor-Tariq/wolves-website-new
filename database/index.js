@@ -249,5 +249,12 @@ exports.wolvesDB = {
 
 // adminDB
 exports.adminDB = {
-    
+    getPerms: (id) => {
+        return new Promise(resolve => {
+            adminDB.all(`SELECT * FROM "PERMISSIONS" WHERE USERNAME="${id}"`, [], (err, res) => {
+                if (err) resolve([]);
+                else resolve(res);
+            })
+        })
+    }
 }
