@@ -285,7 +285,6 @@ body {
         }
 
         ul li a span {
-
             &.label,
             &.badge {
                 float: right;
@@ -295,7 +294,6 @@ body {
         }
 
         .sidebar-dropdown .sidebar-submenu li a {
-
             .badge,
             .label {
                 float: right;
@@ -386,10 +384,9 @@ body {
 
     .sidebar-wrapper {
         .sidebar-menu {
-
             ul li:hover>a,
             .sidebar-dropdown.active>a {
-                color: $grey;
+                color: $white;
             }
         }
 
@@ -406,7 +403,6 @@ body {
 
 .chiller-theme {
     .sidebar-wrapper {
-
         ul li:hover a i,
         .sidebar-dropdown .sidebar-submenu li a:hover:before {
             color: $red2;
@@ -423,6 +419,10 @@ body {
             .sidebar-dropdown div {
                 background: #3a3f48;
             }
+        }
+
+        li.selected {
+            background-color: $red;
         }
     }
 

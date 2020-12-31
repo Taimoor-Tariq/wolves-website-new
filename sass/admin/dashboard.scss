@@ -1,1 +1,47 @@
 @import './essentials';
+
+.shadow {box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);}
+
+.disp-con {
+    position: absolute;
+    height: calc(100% - 80px);
+    width: calc(100% - 340px);
+    overflow: hidden;
+}
+
+.side-list-filter {
+    position: absolute;
+    width: calc(25% - 20px);
+}
+
+.side-list {
+    position: absolute;
+    top: 150px;
+    height: calc(100% - 175px);
+    width: calc(25% - 20px);
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    a {
+        cursor: pointer;
+
+        img {
+            border-radius: 50% !important;
+            overflow: hidden;
+        }
+    }
+}
+
+.side-panel {
+    position: absolute;
+    left: calc(25% + 20px);
+    height: calc(100% - 120px);
+    width: calc(75% - 60px);
+
+    .card {
+        height: 100%;
+    }
+}

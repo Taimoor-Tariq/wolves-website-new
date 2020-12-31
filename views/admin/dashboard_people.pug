@@ -10,7 +10,33 @@ head
 
     main.page-content
         .container-fluid
-            h2 PEOPLE
+            .card.text-dark.disp-con.border-0
+                .card-header.text-white.bg-dark
+                    h1 #{page_info.title}
+                
+                .card-body
+                    if page_info.info.length == 0
+                        h5 NO DATA
+                    else
+                        .side-list-filter.input-group.shadow
+                            .input-group-prepend
+                                span.input-group-text Filter
+                            input#filter_list.form-control(type="text" placeholder="Name")
+
+                        .list-group.side-list.border.shadow
+                            each user in page_info.info
+                                a.list-group-item.list-group-item-action
+                                    .media
+                                        img.mr-3(src=user.IMG height="50px").shadow
+                                        .media-body
+                                            h5.mt-0 #{user.FIRST_NAME} #{user.LAST_NAME}
+                                            | #{user.USERNAME}
+
+                        .side-panel.border.shadow
+                            .card
+                                .card-body
+                                    p TEST
+
 
 
 include _footer

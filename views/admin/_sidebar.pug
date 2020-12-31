@@ -20,7 +20,7 @@ nav#sidebar.sidebar-wrapper
                         span General
 
                     if perms['PEOPLE.PLAYERS'] || perms['PEOPLE.CONTENT'] || perms['PEOPLE.STAFF']
-                        li.sidebar-dropdown(class=active=="PEOPLE"?"active":"")
+                        li.sidebar-dropdown(class=active=="PEOPLE"?"selected active":"")
                             a(href='#')
                                 i.fa.fa-users
                                 span &nbsp; People
@@ -28,18 +28,36 @@ nav#sidebar.sidebar-wrapper
                                 ul
                                     if perms['PEOPLE.STAFF']
                                         li
-                                            a(href='/dashboard/people#staff') Staff
+                                            a(href='/dashboard/people.staff') Staff
 
                                     if perms['PEOPLE.PLAYERS']
                                         li
-                                            a(href='/dashboard/people#players') Players
+                                            a(href='/dashboard/people.players') Players
                                     
                                     if perms['PEOPLE.CONTENT']
                                         li
-                                            a(href='/dashboard/people#content') Content
-                        
+                                            a(href='/dashboard/people.content') Content
+
+
+                    if perms['PAGES.CAROUSEL'] || perms['PAGES.ABOUT']
+                        li.sidebar-dropdown(class=active=="PAGES"?"selected active":"")
+                            a(href='#')
+                                i.fa.fa-copy
+                                span &nbsp; Pages
+                            .sidebar-submenu(style=active=="PAGES"?"display: block;":"")
+                                ul
+                                    if perms['PAGES.CAROUSEL']
+                                        li
+                                            a(href='/dashboard/pages.carousel') Carousel
+
+                                    if perms['PAGES.ABOUT']
+                                        li
+                                            a(href='/dashboard/pages.about') About
+
+
+
                     if perms['EVENTS']
-                        li(class=active=="EVENTS"?"active":"")
+                        li(class=active=="EVENTS"?"selected":"")
                             a(href='/dashboard/events')
                                 i.fa.fa-calendar-alt
                                 span &nbsp; Events
@@ -48,10 +66,15 @@ nav#sidebar.sidebar-wrapper
                 li.header-menu
                     span Extra
 
-                li(class=active=="IMAGES"?"active":"")
+                li(class=active=="IMAGES"?"selected":"")
                     a(href='/dashboard/images')
                         i.fa.fa-images
                         span &nbsp; Images
+
+                li(class=active=="DISCORD"?"selected":"")
+                    a(href='/dashboard/discord')
+                        i.fab.fa-discord
+                        span &nbsp; Discord
 
 
     .sidebar-footer

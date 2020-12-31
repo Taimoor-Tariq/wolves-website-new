@@ -9,8 +9,8 @@ app.use(require('express-session')({ secret: process.env.SESSION_KEY }))
     .use(express.urlencoded( {extended: true} ))
     .use(require('body-parser').json())
     .use(express.static("public"))
-    .use(sub('admin.', require('./routes/admin')))
     .use(sub('www.', require('./routes/www')))
+    .use(sub('admin.', require('./routes/admin')))
     .use(root(require('./routes/www'), 'localhost'))
 
 app.get('/*', (req, res, next) => {

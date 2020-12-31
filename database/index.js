@@ -245,6 +245,21 @@ exports.wolvesDB = {
             })
         })
     },
+
+    getPlayers: (id=null) => {
+        if (id) return new Promise(resolve => {
+            wolvesDB.all(`SELECT * FROM "PLAYERS" WHERE ID="${id}"`, [], (err, res) => {
+                if (err) resolve([]);
+                else resolve(res);
+            })
+        })
+        else return new Promise(resolve => {
+            wolvesDB.all(`SELECT * FROM "PLAYERS" ORDER BY FIRST_NAME ASC`, [], (err, res) => {
+                if (err) resolve([]);
+                else resolve(res);
+            })
+        })
+    },
 }
 
 // adminDB
